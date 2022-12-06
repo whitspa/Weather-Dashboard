@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
- <link rel="stylesheet" href=""style.css/>  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="" style.css />
 </head>
+
 <body>
   <header>Weather Dashboard</header>
 
   <main id="container" class="container">
-  <div class="row">
-    <div class="firstcolumn"> <!--Where user will search for city/cities-->
-        <div id ="user-input-zone"></div>
+    <div class="row">
+      <div class="first-column">
+        <!--Where user will search for city/cities-->
+        <div id="user-input-zone"></div>
         <h1 class="h1"> Enter a City</h1>
         <form id="choose-city">
-          <city name="city" type="text" id="city" class="city-choice"/>
+          <city name="city" type="text" id="city" class="city-choice" />
           <button type="submit" id="search-btn" class="btn"></button>
         </form>
         <div id="search-history"></div>
 
-    <div class="secondcolumn"></div> <!--Where I display current weather and 5 day forecast-->
-        <div id="five-day" cass="row spacebetween"></div>
-  </div>
-</div>
+        <div class="second-column"></div>
+        <div id="five-day" class="row spacebetween"></div>
+        <!--Where I display current weather and 5 day forecast-->
+      </div>
+    </div>
   </main>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./script.js"></script>
 </body>
+
 </html>
