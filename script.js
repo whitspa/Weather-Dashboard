@@ -43,8 +43,8 @@ function fetchForecast(cityLatitude, cityLongitude) {
   })
 }
 
-function makeFiveDay(data){
-console.log('making five dat')
+function makeFiveDay(data) {
+console.log('making five day')
 console.log(data)
   const fiveDayEl = $('#five-day');
   console.log(fiveDayEl)
@@ -54,9 +54,11 @@ console.log(data)
       <div class="card-body">
       <h3 class="card-title">${data[i].dt_txt}</h3>
       <img src="http://openweathermap.org/img/wn/${data[i].weather[0].icon}.png" alt="${data[i].weather[0].description}"/>
-      </div>
+      <h3 class="card-title"> Temp: ${data[i].main.temp}F </h3>
+      <h3 class="card-title"> Wind: ${data[i].wind.speed} MPH </h3>
+      <h3 class="card-title"> Humidity: ${data[i].main.humidity} % </h3>
     </div>`
   }
-
+}
 
 getWeather("Hanover")
