@@ -11,11 +11,53 @@ const cityInputEl = $('#city');
 const searchHistEl = $('#search-history');
 const currentDay = moment().format('M/DD/YYYY');
 
+function loadSearchHistory() {
+const searchHistoryArray = JSON.parse(localStorage.getItem('search history')) || [];
+if (!searchHistoryArray.length){
+  localStorage.setItem("search history", JSON.stringify(searchHistoryArray))
+  return
+ }
+ searchHistEl.empty()
+ for (var i = 0; i < searchHistoryArray.length; i++) {
+ searchHistory(searchHistoryArray[i]);
+ }
+}
 
-function getWeather(city) {
+function saveSearchHistory(newCity) {
+  console.log('saving... ', newCity)
+const searchHistoryArray = JSON.parse(localStorage.getItem('search history')) || [];
+if(searchHistoryArray.includes(newCity)){
+  return
+}
+  searchHistoryArray.push(newCity)
+  console.log(searchHistoryArray)
+ localStorage.setItem("search history", JSON.stringify(searchHistoryArray));
+ loadSearchHistory()
+};
+
+function searchHistory(city) {
+const searchHistoryBtn = $('<button>')
+ .addClass('btn')
+ .text(city)
+ .on('click', function() {
+ $('#current-weather').remove();
+ $('#five-day').empty();
+ $('#five-day-header').remove();
+  getWeather(city);
+ })
+ .attr({
+ type: 'button'
+ });
+ searchHistEl.append(searchHistoryBtn); 
+}
+
+function getWeather(city,event) {
+  if(event){
+    event.preventDefault()
+  }
   const openWeatherApiKey = "6d21d42893bbc8fff541b0af31682596";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openWeatherApiKey}`
-  fetch(url).then(function (response) {
+  fetch(url).then(function (response,city) {
     return response.json()
   }).then(function (data) {
     // makeMainCard(data)   
@@ -33,10 +75,13 @@ function fetchForecast(cityLatitude, cityLongitude) {
   fetch(url).then(function (response) {
     return response.json()
   }).then(function (data) {
+    console.log(data)
+    saveSearchHistory(data.city.name)
     var useFulData = []
     for (let i = 5; i < data.list.length; i += 8) {
       useFulData.push(data.list[i])
     }
+    makeCurrentWeather(data.list[0])
     makeFiveDay(useFulData)
   }).catch(function (error) {
     console.log(error)
@@ -61,4 +106,22 @@ console.log(data)
   }
 }
 
-getWeather("Hanover")
+function makeCurrentWeather(data) {
+  console.log("making current weather")
+  console.log(data)
+}
+
+// makeCurrentWeather()
+function submitCitySearch(event) {
+ event.preventDefault();
+ const city = cityInputEl.val().trim();
+  if (city) {
+ getWeather(city);
+ cityInputEl.val('');
+ } else {
+ alert("Please choose a city");
+ }
+}
+
+userformEl.on("submit", submitCitySearch);
+loadSearchHistory()
