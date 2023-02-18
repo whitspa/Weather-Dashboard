@@ -1,14 +1,4 @@
-//Get API call to work for 1 city. Complete/London
-//Add momentjs for current date. complete
-//Get API Call to work based on user input/selection of a city
-//Modify API call to obtain the specific weather data specified in the acceptance criteria
-//Display weather data
-//Format HTML current weather and 5 day cards
-//Get layout and styling close to mock up
-
-
 const userformEl = $('#choose-city');
-// const secondcolumnEl = $('.second-column');
 const cityInputEl = $('#city');
 const searchHistEl = $('#search-history');
 const currentDay = moment().format('MM/DD/YYYY');
@@ -42,9 +32,6 @@ function searchHistory(city) {
     .addClass('btn btn-secondary')
     .text(city)
     .on('click', function () {
-      //  $('#current-weather').remove();
-      //  $('#five-day').empty();
-      //  $('#five-day-header').remove();
       getWeather(city);
     })
     .attr({
@@ -62,7 +49,6 @@ function getWeather(city, event) {
   fetch(url).then(function (response, city) {
     return response.json()
   }).then(function (data) {
-    // makeMainCard(data)   
     fetchForecast(data.coord.lat, data.coord.lon)
   }).catch(function (error) {
     console.log(error)
@@ -123,7 +109,6 @@ function makeCurrentWeather(data,city) {
 </div>`)
 }
 
-// makeCurrentWeather()
 function submitCitySearch(event) {
   event.preventDefault();
   const city = cityInputEl.val().trim();
