@@ -65,5 +65,5 @@ This weather dashboard utilizes the openweather API to allow the user to see the
   A screen shot of the deployed application is below:
 
 <img src="weatherdashboardscreenshot.png"
-     alt="screenshot of notetaker application "
+     alt="screenshot of weather dashboard application "
      style="float: left; margin-right: 10px;" />
